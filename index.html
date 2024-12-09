@@ -151,6 +151,34 @@
 								</div>
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" /></li>
+									<script>
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Send the form data using FormSubmit
+    fetch(this.action, {
+      method: this.method,
+      body: new FormData(this),
+    })
+      .then(response => {
+        if (response.ok) {
+          // Show the thank-you message
+          alert("Thank you for your message!");
+
+          // Reset the form
+          this.reset();
+        } else {
+          alert("There was an error sending your message. Please try again.");
+        }
+      })
+      .catch(error => {
+        alert("There was an error sending your message. Please try again.");
+        console.error(error);
+      });
+  });
+</script>
+
+
 								</ul>
 							</form>
 							<ul class="contact">
