@@ -134,38 +134,41 @@
 						<div class="inner">
 							<h2 class="major">Get in touch</h2>
 							<p>Ready to experience Birchwood Work Space? Get in touch to book a tour or secure your private office. Whether you need a flexible short-term let or a longer commitment, we’re here to help your business thrive. Contact us today!</p>
-							<form action="https://formsubmit.co/el/zewoho" method="POST">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-									<script>
-  document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
+							<form id="contactForm" action="https://formsubmit.co/el/zewoho" method="POST">
+  <div class="fields">
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea name="message" id="message" rows="4" required></textarea>
+    </div>
+  </div>
+  <ul class="actions">
+    <li><input type="submit" value="Send Message" /></li>
+  </ul>
+</form>
 
-    // Send the form data using FormSubmit
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Send the form data using Fetch API
     fetch(this.action, {
       method: this.method,
       body: new FormData(this),
     })
       .then(response => {
         if (response.ok) {
-          // Show the thank-you message
+          // Display a thank-you message
           alert("Thank you for your message!");
 
-          // Reset the form
+          // Reset the form fields
           this.reset();
         } else {
           alert("There was an error sending your message. Please try again.");
@@ -173,7 +176,7 @@
       })
       .catch(error => {
         alert("There was an error sending your message. Please try again.");
-        console.error(error);
+        console.error("Error:", error);
       });
   });
 </script>
