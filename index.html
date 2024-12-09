@@ -155,29 +155,30 @@
 </form>
 
 <script>
-  document.getElementById("contactForm").addEventListener("submit", function(event) {
+  document.getElementById("contactForm").addEventListener("submit", async function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
 
-    // Send the form data using Fetch API
-    fetch(this.action, {
-      method: this.method,
-      body: new FormData(this),
-    })
-      .then(response => {
-        if (response.ok) {
-          // Display a thank-you message
-          alert("Thank you for your message!");
-
-          // Reset the form fields
-          this.reset();
-        } else {
-          alert("There was an error sending your message. Please try again.");
-        }
-      })
-      .catch(error => {
-        alert("There was an error sending your message. Please try again.");
-        console.error("Error:", error);
+    try {
+      const response = await fetch(this.action, {
+        method: this.method,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", // Required by FormSubmit.co
+        },
+        body: new URLSearchParams(new FormData(this)).toString(), // Convert form data to URL-encoded string
       });
+
+      if (response.ok) {
+        alert("Thank you for your message!");
+        this.reset(); // Reset the form fields
+      } else {
+        const errorMessage = await response.text(); // Get the error details
+        console.error("Error response from server:", errorMessage);
+        alert("There was an error sending your message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      alert("There was an error sending your message. Please try again.");
+    }
   });
 </script>
 
