@@ -130,56 +130,29 @@
 					</section>
 
 				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>Ready to experience Birchwood Work Space? Get in touch to book a tour or secure your private office. Whether you need a flexible short-term let or a longer commitment, we’re here to help your business thrive. Contact us today!</p>
-							<form action="https://formsubmit.co/info@insallconsulting.com" method="POST">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li><script>
-  document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Send the form data using FormSubmit
-    fetch(this.action, {
-      method: this.method,
-      body: new FormData(this),
-    })
-      .then(response => {
-        if (response.ok) {
-          // Show the thank-you message
-          alert("Thank you for your message!");
-
-          // Reset the form
-          this.reset();
-        } else {
-          alert("There was an error sending your message. Please try again.");
-        }
-      })
-      .catch(error => {
-        alert("There was an error sending your message. Please try again.");
-        console.error(error);
-      });
-  });
-</script>
-
-
-								</ul>
-							</form>
+        <section id="footer">
+            <div class="inner">
+                <h2 class="major">Get in touch</h2>
+                <p>Ready to experience Birchwood Work Space? Contact us today!</p>
+                <form id="contactForm" action="https://formsubmit.co/176fc3c16fa21bfcdfbb8d1599b39583" method="POST">
+                    <div class="fields">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" required />
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required />
+                        </div>
+                        <div class="field">
+                            <label for="message">Message</label>
+                            <textarea name="message" id="message" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Send Message" /></li>
+                    </ul>
+                </form>
 							<ul class="contact">
 								<li class="icon solid fa-home">
 									Birchwood Work Space<br />
@@ -198,11 +171,9 @@
 							<ul class="copyright">
 								<li>&copy; Birchwood Work Space Ltd. All rights reserved.</li><li>Website by <a href="https://insallconsulting.com">Insall Consulting</a></li>
 							</ul>
-						</div>
-					</section>
-
-			</div>
-
+ </div>
+			  </section>
+    </div>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
