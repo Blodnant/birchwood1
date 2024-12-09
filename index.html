@@ -134,51 +134,46 @@
 						<div class="inner">
 							<h2 class="major">Get in touch</h2>
 							<p>Ready to experience Birchwood Work Space? Get in touch to book a tour or secure your private office. Whether you need a flexible short-term let or a longer commitment, we’re here to help your business thrive. Contact us today!</p>
-							<form id="contactForm" action="https://formsubmit.co/el/zewoho" method="POST">
-  <div class="fields">
-    <div class="field">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" required />
-    </div>
-    <div class="field">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
-    </div>
-    <div class="field">
-      <label for="message">Message</label>
-      <textarea name="message" id="message" rows="4" required></textarea>
-    </div>
-  </div>
-  <ul class="actions">
-    <li><input type="submit" value="Send Message" /></li>
-  </ul>
-</form>
+							<form action="https://formsubmit.co/el/zewoho" method="POST">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="email" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="4"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li><script>
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-<script>
-  document.getElementById("contactForm").addEventListener("submit", async function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+    // Send the form data using FormSubmit
+    fetch(this.action, {
+      method: this.method,
+      body: new FormData(this),
+    })
+      .then(response => {
+        if (response.ok) {
+          // Show the thank-you message
+          alert("Thank you for your message!");
 
-    try {
-      const response = await fetch(this.action, {
-        method: this.method,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded", // Required by FormSubmit.co
-        },
-        body: new URLSearchParams(new FormData(this)).toString(), // Convert form data to URL-encoded string
-      });
-
-      if (response.ok) {
-        alert("Thank you for your message!");
-        this.reset(); // Reset the form fields
-      } else {
-        const errorMessage = await response.text(); // Get the error details
-        console.error("Error response from server:", errorMessage);
+          // Reset the form
+          this.reset();
+        } else {
+          alert("There was an error sending your message. Please try again.");
+        }
+      })
+      .catch(error => {
         alert("There was an error sending your message. Please try again.");
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
-      alert("There was an error sending your message. Please try again.");
-    }
+        console.error(error);
+      });
   });
 </script>
 
