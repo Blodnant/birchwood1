@@ -134,7 +134,9 @@
             <div class="inner">
                 <h2 class="major">Get in touch</h2>
                 <p>Ready to experience Birchwood Work Space? Contact us today!</p>
-                <form id="contactForm" action="https://formsubmit.co/176fc3c16fa21bfcdfbb8d1599b39583" method="POST">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+					<!-- Replace with your Access Key -->
+    <input type="hidden" name="access_key" value="73db2c31-817e-4bf3-bd4f-6084da2fa9c1">
                     <div class="fields">
                         <div class="field">
                             <label for="name">Name</label>
@@ -148,7 +150,12 @@
                             <label for="message">Message</label>
                             <textarea name="message" id="message" rows="4" required></textarea>
                         </div>
-						<input type="hidden" name="_next" value="https://blodnant.github.io/birchwood1/">
+						<!-- Honeypot Spam Protection -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+    <!-- Custom Confirmation / Success Page -->
+    <input type="hidden" name="redirect" value="https://blodnant.github.io/birchwood1/">
+
                     </div>
                     <ul class="actions">
                         <li><input type="submit" value="Send Message" /></li>
