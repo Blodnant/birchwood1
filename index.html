@@ -153,13 +153,13 @@
 
 <script>
     (function() {
-        emailjs.init(3dhQj6zCsnuH8_Egz);
+        emailjs.init("3dhQj6zCsnuH8_Egz");
     })();
 
     document.getElementById("contact-form").addEventListener("submit", function(event) {
         event.preventDefault();
 
-        emailjs.sendForm(service_k5atvgn, template_ms7dvvu, this)
+        emailjs.sendForm("service_k5atvgn", "template_ms7dvvu", this)
             .then(function() {
                 alert("Message sent successfully!");
             }, function(error) {
