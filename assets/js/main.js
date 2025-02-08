@@ -143,3 +143,30 @@
 			});
 
 })(jQuery);
+$(document).ready(function() {
+  // When any image inside an element with class "image fit" is clicked...
+  $('.image.fit img').on('click', function(e) {
+    e.preventDefault(); // Prevent any default link behavior if applicable
+
+    // Get the source URL of the clicked image.
+    // If you have separate large versions, you could store the large image URL in a data attribute, e.g.:
+    var src = $(this).data('large') || $(this).attr('src');
+    // var src = $(this).attr('src');
+
+    // Set the source of the modal image to the clicked image’s source.
+    $('#modal-img').attr('src', src);
+
+    // Display the modal.
+    $('#image-modal').fadeIn();
+  });
+
+  // Close the modal when the close button or modal background is clicked.
+  $('#image-modal, .close').on('click', function() {
+    $('#image-modal').fadeOut();
+  });
+
+  // (Optional) Prevent clicks on the modal image from closing the modal.
+  $('#modal-img').on('click', function(e) {
+    e.stopPropagation();
+  });
+});

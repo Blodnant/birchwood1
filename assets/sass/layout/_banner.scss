@@ -12,6 +12,8 @@
 		.inner {
 			margin: 0 auto;
 			width: _size(inner);
+			display: block;
+            margin-left: auto;
 		}
 
 		.logo {
@@ -67,7 +69,7 @@
 			font-weight: _font(weight-heading);
 			letter-spacing: _font(kern-heading);
 			line-height: 2;
-			/*text-transform: uppercase;*/
+			text-transform: uppercase;
 		}
 
 		@include breakpoint('<=large') {
@@ -76,7 +78,7 @@
 			background-color:		_palette(bg);
 
 			background-image:		linear-gradient(to top, transparentize(_palette(bg), 0.2), transparentize(_palette(bg), 0.2)),
-									url('../../images/hero.jpg');
+									url('../../images/bg.jpg');
 
 			background-size:		auto,
 									cover;
