@@ -11,6 +11,54 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+      /* Modal container (hidden by default) */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0,0,0,0.9);
+        padding-top: 60px;
+      }
+      .modal-content {
+        display: block;
+        margin: auto;
+        max-width: 80%;
+        max-height: 80%;
+      }
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        padding: 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .prev { left: 20px; }
+      .next { right: 20px; }
+      .prev:hover,
+      .next:hover,
+      .close:hover { color: #ccc; }
+    </style>
 	</head>
 	<body class="is-preload">
 
@@ -54,7 +102,8 @@
 						<div class="wrapper">
 								<div class="inner">
 									<h3 class="major">Bright and modern</h3>
-									<p>Birchwood Work Space provides professional and modern office spaces that have been carefully designed with tenant well-being in mind. Our attention to detail and wonderful location will lift your mood, boost your energy levels and foster productivity and creativity, away from the pollution of the city. Ergonomic furniture, abundance of natural light, efficient heating, and regular cleaning, ensure a comfortable and inspiring workspace. Stay seamlessly connected with high-speed WiFi for smooth collaboration and video calls. Surrounded by like-minded professionals, you’ll enjoy networking opportunities while maintaining a healthy work-life balance.</p>
+									<p>Birchwood Work Space provides professional and modern office spaces that have been carefully designed with tenant well-being in mind. Our attention to detail and wonderful location will lift your mood, boost your energy levels and foster productivity and creativity, away from the pollution of the city.</p>
+									<p>Ergonomic furniture, abundance of natural light, efficient heating, and regular cleaning, ensure a comfortable and inspiring workspace. Stay seamlessly connected with high-speed WiFi for smooth collaboration and video calls. Surrounded by like-minded professionals, you’ll enjoy networking opportunities while maintaining a healthy work-life balance.</p>
 
 									<section>
 										<div class="box alt">
@@ -71,7 +120,7 @@
 										</div>
 										</section>
 
-
+									<br>
 									<h3 class="major">Gym</h3>
 									<p>Birchwood Work Space boasts a modern and fully equipped gym that is for the exclusive use of Birchwood Work Space tenants. Equipment includes free weights, bike, treadmill and seated bike.</p>
 
@@ -86,6 +135,7 @@
 											</div>
 										</div>
 										</section>
+									<br>
 									<h3 class="major">Country Life</h3>
 									<p>Nestled in the serene countryside on the outskirts of Woldingham and Caterham, Birchwood Work Space offers a unique blend of rural tranquillity and modern convenience. Set amidst rolling fields and ancient woodlands, our workspace provides a peaceful retreat from the hustle and bustle, while keeping you well-connected to surrounding towns including Warlingham, Sanderstead, Whyteleafe, Oxted, and Godstone. Whether you’re going for a lunchtime run or taking a breath of fresh air between meetings in our idyllic setting, it's right outside your door.</p>
 
@@ -126,7 +176,13 @@
 					</section>
 
 			</div>
-
+    <!-- Modal Structure -->
+    <div id="image-modal" class="modal">
+      <span class="close">&times;</span>
+      <span class="prev">&#10094;</span>
+      <img class="modal-content" id="modal-img" src="" alt="Expanded Image">
+      <span class="next">&#10095;</span>
+    </div>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -134,10 +190,58 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-<!-- Modal Structure -->
+		    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        const closeBtn = modal.querySelector(".close");
+        const prevBtn = modal.querySelector(".prev");
+        const nextBtn = modal.querySelector(".next");
+
+        // Collect all images with a data-large attribute
+        const images = Array.from(document.querySelectorAll('img[data-large]'));
+        let currentIndex = 0;
+
+        // Open modal on thumbnail click
+        images.forEach((img, index) => {
+          img.addEventListener("click", function() {
+            modal.style.display = "block";
+            modalImg.src = img.getAttribute("data-large");
+            currentIndex = index;
+          });
+        });
+
+        // Close modal when clicking the close button
+        closeBtn.addEventListener("click", function() {
+          modal.style.display = "none";
+        });
+
+        // Close modal when clicking outside the modal content
+        modal.addEventListener("click", function(e) {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        // Navigate to previous image
+        prevBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          modalImg.src = images[currentIndex].getAttribute("data-large");
+        });
+
+        // Navigate to next image
+        nextBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % images.length;
+          modalImg.src = images[currentIndex].getAttribute("data-large");
+        });
+      });
+    </script>
+<!-- Modal Structure
 <div id="image-modal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="modal-img" alt="Expanded Image">
-</div>
+</div>-->
 	</body>
 </html>
