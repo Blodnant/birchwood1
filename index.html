@@ -132,12 +132,144 @@
 
 					</section>
 
-				<!-- Footer -->
+
+				<!-- Inside your footer section -->
+<section id="footer">
+  <div class="inner">
+    <h2 class="major">Get in touch</h2>
+    <p>
+      Ready to experience Birchwood Work Space? Contact us to book a tour or secure your private office.
+      Whether you need a flexible short-term let or a longer commitment, we’re here to help your business thrive.
+    </p>
+    <!-- Add EmailJS script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Contact Form -->
+    <form id="contact-form" novalidate>
+      <div class="fields">
+        <div class="field">
+          <label for="name">
+            Name <span class="required-asterisk">*</span>
+          </label>
+          <input type="text" name="name" id="name" required />
+        </div>
+        <div class="field">
+          <label for="email">
+            Email <span class="required-asterisk">*</span>
+          </label>
+          <input type="email" name="email" id="email" required />
+		</div>
+		  <div class="field">
+          <label for="tel">
+            Phone <span class="required-asterisk">*</span>
+          </label>
+          <input type="tel" name="phone" id="tel" required />
+        </div>
+        <div class="field">
+          <label for="message">
+            Message <span class="required-asterisk">*</span>
+          </label>
+          <textarea name="message" id="message" rows="4" required></textarea>
+        </div>
+      </div>
+      <ul class="actions">
+        <li><input type="submit" value="Send Message" /></li>
+      </ul>
+    </form>
+
+    <!-- Inline CSS for error styling (you can also add this to your main.css)
+    <style>
+      .required-asterisk {
+        color: red;
+      }
+      .error {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 0.25em;
+      }
+      input.error-border,
+      textarea.error-border {
+        border: 1px solid red;
+      }
+    </style>-->
+
+    <!-- JavaScript for custom form validation -->
+    <script>
+      // Initialize EmailJS (replace with your own user/public key)
+      (function () {
+        emailjs.init("3dhQj6zCsnuH8_Egz");
+      })();
+
+      // Custom validation function
+      document.getElementById("contact-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var form = this;
+        var isValid = true;
+        // Remove previous error messages
+        form.querySelectorAll(".error").forEach(function (err) {
+          err.remove();
+        });
+        // Get all required input and textarea elements
+        var fields = form.querySelectorAll("input[required], textarea[required]");
+        fields.forEach(function (field) {
+          // Clear any previous error border
+          field.classList.remove("error-border");
+          if (!field.value.trim()) {
+            isValid = false;
+            var errorMessage = document.createElement("div");
+            errorMessage.className = "error";
+            errorMessage.innerText = "This field is required.";
+            field.classList.add("error-border");
+            // Insert the error message after the field
+            field.parentNode.appendChild(errorMessage);
+          }
+        });
+
+        // If the form is not valid, stop here so user can fix errors
+        if (!isValid) {
+          return;
+        }
+
+        // If valid, send the form using EmailJS
+        emailjs.sendForm("service_k5atvgn", "template_ms7dvvu", form)
+          .then(function () {
+            alert("Message sent successfully!");
+            form.reset();
+          }, function (error) {
+            alert("Failed to send message: " + JSON.stringify(error));
+          });
+      });
+    </script>
+
+    <!-- Rest of your footer content (contact info, map, copyright, etc.) -->
+    <ul class="contact">
+      <li class="icon solid fa-home">
+        Birchwood Work Space<br />
+        Woldingham Road<br />
+        Woldingham<br />
+        Surrey<br />
+        CR3 7LR
+      </li>
+      <li class="icon solid fa-phone">07979 887 707</li>
+      <li class="icon solid fa-envelope"><a href="mailto:birchwoodworkspace@gmail.com">birchwoodworkspace@gmail.com</a></li>
+      <li class="icon brands fa-facebook-f"><a href="https://www.facebook.com/61559615254504">Birchwood Work Space on Facebook</a></li>
+    </ul>
+
+    <iframe class="inner" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d67972.01361724321!2d-0.13363217053064363!3d51.30069702483685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4875ffef39414721%3A0x9b17872741395a95!2sBirchwood%20Workspace!5e0!3m2!1sen!2suk!4v1733148826602!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <ul class="copyright">
+      <li>&copy; Essentialgroup Ltd All rights reserved.</li>
+      <li>Website by <a href="http://insallconsulting.com">Insall Consulting</a></li>
+      <li>Design by <a href="https://html5up.net/">HTML5 UP</a></li>
+    </ul>
+  </div>
+</section>
+
+				<!-- Footer
 					<section id="footer">
 						<div class="inner">
 							<h2 class="major">Get in touch</h2>
                 <p>Ready to experience Birchwood Work Space? Contact us to book a tour or secure your private office. Whether you need a flexible short-term let or a longer commitment, we’re here to help your business thrive. </p>
-							<!-- Add EmailJS script -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <form id="contact-form">
@@ -197,16 +329,14 @@
 							</ul>
 						</div>
 					</section>
-
+-->
 			</div>
 
-		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
